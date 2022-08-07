@@ -71,7 +71,7 @@ function del($id){
             }
             $sql.= join(" AND ",$tmp);
         }else{
-            $sql.= "`id`='{$id}'";
+            $sql.= "`id`='$id'";
         }
     
 
