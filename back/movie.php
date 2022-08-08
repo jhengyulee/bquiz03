@@ -30,7 +30,7 @@ foreach($rows as $key => $row){
                 <button onclick="show(<?=$row['id'];?>)"><?=($row['sh']==1)?'顯示':'隱藏';?></button> <!---->
                 <button onclick="sw('movie',[<?=$row['id'];?>,<?=$prev;?>])">往上</button> <!--switch-->
                 <button onclick="sw('movie',[<?=$row['id'];?>,<?=$next;?>])">往下</button> <!--switch-->
-                <button onclick="location.href='?do=edit_movie&id=<?=$row['id'];?>'">編輯電影</button> <!---->
+                <button onclick="location.href='?do=edit_movie&id=<?=$row['id'];?>'">編輯電影</button> <!--時間不夠就放掉-->
                 <button onclick="del('movie',<?=$row['id'];?>)">刪除電影</button> <!--到movie資料表 且id=...-->
             </div>
             <div>
@@ -52,13 +52,13 @@ function sw(table,id){
         location.reload();
     })
 }
-
+//刪除
 function del(table,id){
     $.post("./api/del.php",{table,id},()=>{
         location.reload();
     })
 }
-
+// 顯示不顯示
 function show(id){
     $.post("./api/show.php",{id},()=>{
         location.reload();
