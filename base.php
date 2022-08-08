@@ -142,6 +142,15 @@ function dd($array){
 }
 
 $Poster= new DB('poster');
+$Movie=new DB('movie');
 
+$Level=[
+    '普遍級'=>'03C01.png',
+    '輔導級'=>'03C02.png',
+    '保護級'=>'03C03.png',
+    '限制級'=>'03C04.png'    
+];
+
+$Level['普遍級']
 
 ?>
