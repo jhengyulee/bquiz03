@@ -31,7 +31,7 @@ include_once "base.php";
   <div id="mm">
     <!-- 登入後才出現的東西 -->
     <?php
-    if(isset($_SESSION['login'])){   //判斷在前
+    if(isset($_SESSION['login'])){   //判斷登入行為在前
     ?>
     <div class="ct a rb" style="position:relative; width:101.5%; left:-1%; padding:3px; top:-9px;"> 
     <a href="?do=tit">網站標題管理</a>| 
@@ -50,11 +50,11 @@ include_once "base.php";
           include './back/main.php';
         }
       }else{
-        include "./back/login.php";  //登入行為在後
+        include "./back/login.php";  //登入行為在後  故在後台登入後要導回
       }
       ?>
   </div>
-  <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
+  <div id="bo"> ©Copyright 2010~2022 ABC影城 版權所有 </div>
 </div>
 </body>
 </html>
