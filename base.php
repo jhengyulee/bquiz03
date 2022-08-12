@@ -33,7 +33,7 @@ function all(...$arg){
     if(isset($arg[1])){
         $sql.=$arg[1];
     }
-
+    
     return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 }
@@ -143,6 +143,7 @@ function dd($array){
 
 $Poster= new DB('poster');
 $Movie=new DB('movie');
+$Order=new DB('orders');
 
 $Level=[
     '普遍級'=>'03C01.png',
