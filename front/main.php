@@ -4,6 +4,7 @@
     height: 280px;
     margin: auto;
     background: white;
+    position: relative;
   }
 
   .controls{
@@ -30,7 +31,7 @@
 
   .left{
     
-    border-right:30px solid #bbb ;
+    border-right:30px solid #555 ;
   }
 
   .icons{
@@ -41,7 +42,12 @@
 
   .poster{
     width: 100%;
-    height: ;
+    text-align: center;
+    position: absolute;
+  }
+
+  .poster img{
+    width: 99%;
   }
 </style>
 
@@ -88,13 +94,13 @@
           foreach($rows as $row){
             
         ?>
-        <div style="display:flex;flex-wrap:wrap;border:1px solid #ccc;border-radius:10px;width:49%;padding:5px">
+        <div style="display:flex;flex-wrap:wrap;border:1px solid #ccc;border-radius:10px;width:49.5%;padding:5px;box-sizing:border-box;margin:2px 0">
             <div style="width:30%">
-            <a href="?do=intro&id<?=$row['id'];?>">
+            <a href="?do=intro&id=<?=$row['id'];?>">
                 <img src="./upload/<?=$row['poster'];?>" style="width:60px;height:80px;border:2px solid white">
             </a>
               </div>
-            <div style="width:70%;padding-left:2px">
+            <div style="width:70%;padding-left:2px;box-sizing:border-box">
               <div><?=$row['name'];?></div>
               <div>分級：
                   <img src="./icon/<?=$Level[$row['level']];?>" style="width:18px">
@@ -113,19 +119,21 @@
         <?php
         }
         ?>
-          <div class="ct"> 
+          <div class="ct" style="width:100%;"> 
           <?php  
-          //分頁  待完成
+          //分頁 
           if(($now-1)>0){
-
+            $p=$now-1;
+            echo "<a href='?p={$p}'> </a>";
           }
           for($i=1;$i<=$pages;$i++){
-            $fontsize=($now==1)?'24px':'18px';
-            echo "";
+            $fontSize=($now==$i)?'24px':'18px';
+            echo "<a href='?p={$i}' style='font-size:{$fontSize}'> $i </a>";
           }
 
           if(($now+1)<=$pages){
-
+            $p=$now+1;
+            echo "<a href='?p={$p}'> </a>"; 
           }
 
           
@@ -134,3 +142,5 @@
         </div>
       </div>
     
+
+      

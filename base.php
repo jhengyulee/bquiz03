@@ -33,7 +33,7 @@ function all(...$arg){
     if(isset($arg[1])){
         $sql.=$arg[1];
     }
-    
+    // echo $sql;
     return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
 }
@@ -94,7 +94,7 @@ function save($array){
         $sql="INSERT INTO $this->table (`".join("`,`",array_keys($array))."`) 
                                 VALUES ('".join("','",$array)."')"; 
     }
-
+    // echo $sql;
     return $this->pdo->exec($sql);
 }
 

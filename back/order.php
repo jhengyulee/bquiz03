@@ -1,6 +1,6 @@
 <h3 class="ct">訂單清單</h3>
 <style>
-    .header>div,.row>div{
+    .header > div,.row > div{
         width: calc(100% / 7 );
         text-align: center;
     }
