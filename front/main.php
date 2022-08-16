@@ -1,16 +1,17 @@
 <style>
+  .list *, .controls *{
+    box-sizing: border-box;
+  }
   .lists{
     width: 210px;
     height: 280px;
     margin: auto;
-    background: white;
     position: relative;
   }
 
   .controls{
     width: 420px;
     height: 100px;
-    background:white;
     margin:1rem auto;
     display: flex;
     align-items: center;
@@ -25,19 +26,20 @@
   }
 
   .right{
-    border-left:30px solid #555 ;
+    border-left:30px solid #ccc ;
     
   }
 
   .left{
     
-    border-right:30px solid #555 ;
+    border-right:30px solid #ccc ;
   }
 
   .icons{
     width: 320px;
-    background: yellow;
     height: 100%;
+    display: flex;
+    overflow: hidden;
   }
 
   .poster{
@@ -49,6 +51,19 @@
   .poster img{
     width: 99%;
   }
+
+  .icon{
+    width: 80px;
+    flex-shrink: 0;
+    padding: 2px;
+    text-align: center;
+    font-size: small;
+  }
+
+  .icon img{
+    width: 70px;
+  }
+  
 </style>
 
 <div class="half" style="vertical-align:top;">
@@ -68,7 +83,20 @@
             </div>
             <div class="controls">
               <div class="left"></div>
-              <div class="icons"></div>
+              
+              <div class="icons">
+              <?php
+
+              foreach($pos as $key => $po){
+                echo "<div class='icon' id='i{$po['id']}' data-ani='{$po['ani']}'>";
+                echo "<img src='./upload/{$po['img']}'>";
+                echo "<div>{$po['name']}</div>";
+                echo "</div>";
+              }
+
+
+              ?>
+              </div>
               <div class="right"></div>
             </div>
           </div>
