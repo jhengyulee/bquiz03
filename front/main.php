@@ -7,6 +7,7 @@
     height: 280px;
     margin: auto;
     position: relative;
+    overflow: hidden;
   }
 
   .controls{
@@ -124,7 +125,7 @@
           $("#"+id).show();
         })
 
-        let slider=setInterval(()=>{ transition() },2000); //為解題而做
+        let slider=setInterval(()=>{ transition() },2000); 
 
         function transition(){
           let now=$(".poster:visible");
@@ -146,35 +147,30 @@
               })
       
               break;
-            case 2: //滑入滑出
+            case 2: //滑入滑出 未完成
 
-              $(now).slideUp(800,()=>{
+              $(now).animate({left:-210,top:0},800,()=>{
                 $(next).slideDown(800);
               })
 
               break;
-            case 3: //縮放
+            case 3: //縮放 未完成
               $(now).hide(800,()=>{
                 $(next).show(800);
               })
-              
+
               break;
           }
         }
-        // let slider=setInterval(()=>{
-        //     $(".poster").eq(start).fadeOut(800,()=>{
 
-        //       if(start >= $(".poster").length-1){
-        //         start=0;
-        //       }else{
-        //         start++;
-        //       }
-        //       console.log("現在跑的是eq"+start+"的海報");
-        //       $(".poster").eq(start).fadeIn(800);
-                  
-        //     })
-            
-        // },2000)
+          ///////////////////// 缺
+
+
+
+
+
+
+          /////////////////////
 
         let p=1;
         let pages=$(".poster").length-4; //畫面已先顯示4張圖 故總數-4
@@ -188,15 +184,19 @@
           let shift;
           switch(arrow){
               case "left":
-                if(p<1){
-
+                if(p>1){
+                  p--;
                 }
-
+                break;
               case "right":
-                if(p>pages){
-
+                if(p<=pages){
+                  p++;
                 }  
+                break;
           }
+          shift=(p-1)*80;
+          $(".icon").animate({right:shift});
+
         })
       </script>
 
