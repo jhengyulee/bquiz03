@@ -45,7 +45,8 @@
   .poster{
     width: 100%;
     text-align: center;
-    position: absolute;
+    position: absolute;  /* 才會定位在左上角 */
+    
   }
 
   .poster img{
@@ -64,6 +65,15 @@
     width: 70px;
   }
   
+  .left:hover,
+  .right:hover,
+  .icon:hover{
+    cursor: pointer;
+  }
+
+  .icon:hover{
+    border: 2px solid white;
+  }
 </style>
 
 <div class="half" style="vertical-align:top;">
