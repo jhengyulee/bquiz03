@@ -46,7 +46,7 @@
     width: 100%;
     text-align: center;
     position: absolute;  /* 才會定位在左上角 */
-    
+    display: none;
   }
 
   .poster img{
@@ -112,6 +112,93 @@
           </div>
         </div>
       </div>
+
+
+      <script>
+        //動畫控制方法
+        $(".poster").eq(0).show(); //$(".poster")是個-陣列-物件；eq(0)索引值為0的物件
+        let start=0;
+        $(".icon").on("click",function(){
+          let now=$(".poster:visible").hide();
+          let id=$(this).attr("id").replace("i","p");
+          $("#"+id).show();
+        })
+
+        let slider=setInterval(()=>{ transition() },2000); //為解題而做
+
+        function transition(){
+          let now=$(".poster:visible");
+          let eq=$(now).index();
+          //判斷下一張海報的索引值
+          if(eq==$(".icon").length-1){ //若為最後一張   
+            eq=0;
+          }else{
+            eq=eq+1;
+          }
+          let next=$(".poster").eq(eq);
+          let ani=$(now).data('ani')
+
+          switch(ani){
+            case 1: //淡入淡出
+            
+              $(now).fadeOut(800,()=>{  //現在的消失
+                $(next).fadeIn(800); //下一個進來
+              })
+      
+              break;
+            case 2: //滑入滑出
+
+              $(now).slideUp(800,()=>{
+                $(next).slideDown(800);
+              })
+
+              break;
+            case 3: //縮放
+              $(now).hide(800,()=>{
+                $(next).show(800);
+              })
+              
+              break;
+          }
+        }
+        // let slider=setInterval(()=>{
+        //     $(".poster").eq(start).fadeOut(800,()=>{
+
+        //       if(start >= $(".poster").length-1){
+        //         start=0;
+        //       }else{
+        //         start++;
+        //       }
+        //       console.log("現在跑的是eq"+start+"的海報");
+        //       $(".poster").eq(start).fadeIn(800);
+                  
+        //     })
+            
+        // },2000)
+
+        let p=1;
+        let pages=$(".poster").length-4; //畫面已先顯示4張圖 故總數-4
+
+          //當 .left/.right被點擊時 判斷點的是哪一邊
+        $(".left,.right").on("click",function(){
+          let arrow=$(this).attr('class');
+          // console.log(arrow);
+          
+          // 決定頁面在哪裡
+          let shift;
+          switch(arrow){
+              case "left":
+                if(p<1){
+
+                }
+
+              case "right":
+                if(p>pages){
+
+                }  
+          }
+        })
+      </script>
 
       
       <div class="half">
