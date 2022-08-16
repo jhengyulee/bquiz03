@@ -26,12 +26,22 @@ include_once "../base.php";
 .seat{
     width: 20%;
     height: 25%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
 }
 </style>
 
 <div id="block">
     <div class="seats">
-        <div class="seat"></div>
+        <?php
+            echo"<div class='seat'>";
+            echo floor($i/5)+1;
+            echo"排";
+            echo floor($i%5)+1;
+            echo"號";
+            echo"</div>" 
+        ?>
     </div>
 </div>
 
