@@ -49,6 +49,7 @@ $selectedMovieId=$_GET['id']??0 ;
         date:'',
         sessionId:0,
         session:'',
+        seats=null,
     }
 
     //ajax載入
@@ -100,7 +101,7 @@ $selectedMovieId=$_GET['id']??0 ;
         info.movieName=$("#movie option:selected").text();
         info.date=$("#date").val();
         info.sessionId=$("#session").val();
-        info.session=$("#session option:selected").text().split(" ");
+        info.session=$("#session option:selected").text().split(" ");//用空格隔開
 
 
     }
@@ -125,7 +126,7 @@ $selectedMovieId=$_GET['id']??0 ;
                     $(this).parent().addClass("checked")
                 }
             }else{
-                seats.splice(seats.indexOf(num),1);
+                seats.splice(seats.indexOf(num),1); //what?
                 $(this).parent().removeClass("checked")
                 $(this).parent().addClass("empty")
 
@@ -135,6 +136,8 @@ $selectedMovieId=$_GET['id']??0 ;
            
                 
             })
+
+            info.seats=seats;
     }
 
     
