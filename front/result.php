@@ -1,25 +1,43 @@
-您的病單編號為<?=$_GET['no'];?>
+<?php
+$order=$Order->find(['no'=>$_GET['no']]);
+?>
+<style>
+    #result{
+        border: 1px solid #ccc;
+        padding: 1px;
 
-<table style="width: 65%;margin:auto;padding:20px;border: 1px solid grey">
+    }
+</style>
+
+<table id="result" style="width: 65%;margin:auto;padding:20px;border: 1px solid #999">
     <tr>
         <td colspan="2">感謝您的訂購，您的訂單編號為<?=$_GET['no'];?></td>
         <td></td>
     </tr>
     <tr>
         <td width="120px">電影名稱：</td>
-        <td></td>
+        <td><?=$order['name'];?></td>
     </tr>
     <tr>
         <td>日期：</td>
-        <td></td>
+        <td><?=$order['date'];?></td>
     </tr>
     <tr>
         <td>場次時間：</td>
-        <td></td>
+        <td><?=$order['session'];?></td>
     </tr>
     <tr>
         <td colspan="2">
             座位：<br>
+            <?php
+                $seats=unserialize($order['seats']);
+                foreach($seats as $seat){
+                    echo floor($seat/5)+1;
+                    echo"排";
+                    echo floor($seat%5)+1;
+                    echo"號";
+                }
+            ?>
         </td>
         <td></td>
     </tr>

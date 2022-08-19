@@ -101,7 +101,7 @@ $selectedMovieId=$_GET['id']??0 ;
         info.movieName=$("#movie option:selected").text();
         info.date=$("#date").val();
         info.sessionId=$("#session").val();
-        info.session=$("#session option:selected").text().split(" ");//用空格隔開
+        info.session=$("#session option:selected").text().split(" ")[0];//用空格隔開
 
 
     }
@@ -111,6 +111,7 @@ $selectedMovieId=$_GET['id']??0 ;
         $('#movieName').text(info.movieName);
         $('#dateStr').text(info.date);
         $('#sessionName').text(info.session);
+        
         $(".seat input").on("change",function(){
             let num=$(this).val();
             console.log();

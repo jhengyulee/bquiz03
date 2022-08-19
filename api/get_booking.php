@@ -73,7 +73,7 @@ include_once "../base.php";
     <div>您已經勾選<span id="tickets"></span>張票，最多可以購買四張票</div>
     <div>
         <button onclick="$('#order,#booking').toggle();$('#booking').html('')">上一步</button>
-        <button onclick="setSeatEvents.checkout()">訂購</button>
+        <button onclick="checkout()">訂購</button>
     </div>
 
     </div>
