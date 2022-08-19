@@ -2,7 +2,7 @@
 $order=$Order->find(['no'=>$_GET['no']]);
 ?>
 <style>
-    #result{
+    #result td{
         border: 1px solid #ccc;
         padding: 1px;
 
@@ -12,11 +12,11 @@ $order=$Order->find(['no'=>$_GET['no']]);
 <table id="result" style="width: 65%;margin:auto;padding:20px;border: 1px solid #999">
     <tr>
         <td colspan="2">感謝您的訂購，您的訂單編號為<?=$_GET['no'];?></td>
-        <td></td>
+        
     </tr>
     <tr>
         <td width="120px">電影名稱：</td>
-        <td><?=$order['name'];?></td>
+        <td><?=$order['movie'];?></td>
     </tr>
     <tr>
         <td>日期：</td>
@@ -35,14 +35,16 @@ $order=$Order->find(['no'=>$_GET['no']]);
                     echo floor($seat/5)+1;
                     echo"排";
                     echo floor($seat%5)+1;
-                    echo"號";
+                    echo"號<br>";
                 }
+                
             ?>
+            <div>共<?=$order['qt'];?>張電影票</div>
         </td>
         <td></td>
     </tr>
     <tr>
-        <td colspan="2">
+        <td colspan="2" class="ct">
             <button onclick="location.href='?'">確認</button>
         </td>
         

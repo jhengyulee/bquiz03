@@ -2,7 +2,12 @@
 
 include_once "../base.php";
 
-
+$ords=$Order->all(['movie'=>$_GET['movie'],'date'=>$_GET['date'],'session'=>$_GET['session']]);
+$seats=[];
+foreach($ords as $ord){
+    $s=unserialize($ord['seats']);
+    $seats=array_merge($seats,$s);
+}
 ?>
 
 
@@ -54,12 +59,20 @@ include_once "../base.php";
     <div class="seats">
         <?php
             for($i=0;$i<20;$i++){
-            echo"<div class='seat empty'>";
+                if(!in_array($i,$seats)){
+
+                    echo"<div class='seat empty'>";
+                }else{
+                    echo"<div class='seat checked'>";
+                }
             echo floor($i/5)+1;
             echo"排";
             echo floor($i%5)+1;
             echo"號";
-            echo "<input type='checkbox' name='seat' malue='$i' class='chk'>";
+            if(!in_array($i,$seats)){
+
+                echo "<input type='checkbox' name='seat' malue='$i' class='chk'>";
+            }
             echo"</div>"; 
             }
         ?>

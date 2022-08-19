@@ -7,7 +7,7 @@ $selectedMovieId=$_GET['id']??0 ;
 
 <h2 class="ct">線上訂票</h2>
 
-<table  style="width:500px;margin:0 auto;">
+<table  style="width:500px;margin:auto;">
     <tr>
         <td width="15%">電影：</td>
         <td>
@@ -49,7 +49,7 @@ $selectedMovieId=$_GET['id']??0 ;
         date:'',
         sessionId:0,
         session:'',
-        seats=null,
+        seats:null,
     }
 
     //ajax載入
@@ -88,9 +88,9 @@ $selectedMovieId=$_GET['id']??0 ;
     function booking(){
         $("#order").hide();
         $("#booking").show();
-        $.get("./api/get_booking.php",(seats)=>{
+        updateInfo();
+        $.get("./api/get_booking.php",{movie:info.movieId,date:info.date,session:info.session},(seats)=>{
             $('#booking').html(seats);
-            updateInfo();
             setSeatEvents();
         })
         
@@ -111,7 +111,7 @@ $selectedMovieId=$_GET['id']??0 ;
         $('#movieName').text(info.movieName);
         $('#dateStr').text(info.date);
         $('#sessionName').text(info.session);
-        
+
         $(".seat input").on("change",function(){
             let num=$(this).val();
             console.log();
