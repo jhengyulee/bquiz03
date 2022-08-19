@@ -42,6 +42,15 @@ $selectedMovieId=$_GET['id']??0 ;
 <div id="booking" style="display:none;">劃位</div>
 
 <script>
+
+    let info={
+        movieId:0,
+        movieName:'',
+        date:'',
+        sessionId:0,
+        session:'',
+    }
+
     //ajax載入
     $("#movie").load("./api/movie_list.php",{id:<?=$selectedMovieId;?>},()=>{
         let movie=$("#movie").val();
@@ -78,7 +87,56 @@ $selectedMovieId=$_GET['id']??0 ;
     function booking(){
         $("#order").hide();
         $("#booking").show();
+        $.get("./api/get_booking.php",(seats)=>{
+            $('#booking').html(seats);
+            updateInfo();
+            setSeatEvents();
+        })
         
     }
+
+    function updateInfo(){
+        info.movieId=$("#movie").val();
+        info.movieName=$("#movie option:selected").text();
+        info.date=$("#date").val();
+        info.sessionId=$("#session").val();
+        info.session=$("#session option:selected").text().split(" ");
+
+
+    }
+    //本題最難之處  為了解題可以跳過 但實務上很常用
+    function setSeatEvents(){
+        let seats=new Array();
+        $('#movieName').text(info.movieName);
+        $('#dateStr').text(info.date);
+        $('#sessionName').text(info.session);
+        $(".seat input").on("change",function(){
+            let num=$(this).val();
+            console.log();
+
+            if($(this).prop('checked')){
+
+                if(seats.length>=4){
+                    alert("最多只能勾選4張票");
+                    $(this).prop('checked',false);
+                }else{
+                    seats.push(num);
+                    $(this).parent().removeClass("empty")
+                    $(this).parent().addClass("checked")
+                }
+            }else{
+                seats.splice(seats.indexOf(num),1);
+                $(this).parent().removeClass("checked")
+                $(this).parent().addClass("empty")
+
+            }
+
+            $('#tickets').text(seats.length);
+           
+                
+            })
+    }
+
+    
 
 </script>
